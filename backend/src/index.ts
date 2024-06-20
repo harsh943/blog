@@ -1,0 +1,22 @@
+import { Hono } from 'hono'
+import { userRouter } from './Routes/user'
+import { blogrouter } from './Routes/blog'
+import { cors } from 'hono/cors'
+
+const app = new Hono<{
+  Bindings:{
+    DATABASE_URL :string
+    JWT_SECRET:string
+  }
+}>()
+app.use('/*', cors())
+// grouping feature by hono for routing 
+app.route("api/v1/user",userRouter);
+app.route("api/v1/blog",blogrouter);
+
+
+// c=>(req,res)
+
+
+
+export default app
