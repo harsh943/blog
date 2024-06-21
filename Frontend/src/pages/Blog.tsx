@@ -1,7 +1,6 @@
 import { useBlog } from "../Hooks"
 import { useParams } from "react-router-dom";
 import { Fullblog } from "../components/Fullblog";
-import { Skeleton } from "../components/Skeleton";
 import { Appbar } from "../components/Appbar";
 import { Spinner } from "../components/Spinner";
 export const Blog = () => {
@@ -9,7 +8,7 @@ export const Blog = () => {
   const { loading, blog } = useBlog({
     id: id || ""
   });
-  if(loading){
+  if(loading || !blog){
     return <div>
       <Appbar />
     <div className="h-screen flex flex-col justify-center"> 
@@ -22,7 +21,7 @@ export const Blog = () => {
  }
   return (
     <div>
-      <Fullblog blog={blog}/>
+            <Fullblog blog={blog}/>
     </div>
   )
 }
