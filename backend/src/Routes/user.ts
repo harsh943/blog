@@ -16,7 +16,7 @@ userRouter.post('/signup', async (c) => {
         const body = await c.req.json();
         const { success, error } = signupInput.safeParse(body);
         if (!success) {
-            c.status(400);  // Changed to 400 Bad Request
+            c.status(400); 
             return c.json({
                 message: "Inputs not correct",
                 error
@@ -45,7 +45,7 @@ userRouter.post('/signup', async (c) => {
         return c.text(jwt);
     } catch (e) {
         console.log(e);
-        c.status(500);  // Changed to 500 Internal Server Error
+        c.status(500); 
         return c.text('Server Error');
     }
 });
@@ -55,7 +55,7 @@ userRouter.post('/signin', async (c) => {
         const body = await c.req.json();
         const { success, error } = signinInput.safeParse(body);
         if (!success) {
-            c.status(400);  // Changed to 400 Bad Request
+            c.status(400);  
             return c.json({
                 message: "Inputs not correct",
                 error
@@ -74,7 +74,7 @@ userRouter.post('/signin', async (c) => {
         });
 
         if (!user) {
-            c.status(403);  // 403 Forbidden for incorrect credentials
+            c.status(403);  
             return c.json({
                 message: "Incorrect credentials"
             });
@@ -90,7 +90,7 @@ userRouter.post('/signin', async (c) => {
         return c.text(jwt);
     } catch (e) {
         console.log(e);
-        c.status(500);  // Changed to 500 Internal Server Error
+        c.status(500); 
         return c.text('Server Error');
     }
 });
